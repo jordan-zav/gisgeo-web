@@ -1,0 +1,234 @@
+---
+const { title, lang = "en" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+
+    <meta name="theme-color" content="#0b1220" />
+
+    <style>
+      /* =====================
+         VARIABLES
+      ====================== */
+      :root {
+        --green: #6bbf59;
+
+        /* HEADER */
+        --header-bg: #5f6f82;
+        --header-text: #f8fafc;
+
+        /* CARD BASE (LIGHT) */
+        --card-bg: #ffffff;
+        --card-text: #1f2933;
+
+        /* PAGE */
+        --bg: #f8fafc;
+        --text: #1f2933;
+      }
+
+      [data-theme="dark"] {
+        /* HEADER */
+        --header-bg: #0b1220;
+        --header-text: #e5e7eb;
+
+        /* CARD BASE (DARK) */
+        --card-bg: #0f172a;
+        --card-text: #e5e7eb;
+
+        /* PAGE */
+        --bg: #020617;
+        --text: #e5e7eb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      /* =====================
+         GLOBAL TRANSITIONS
+      ====================== */
+      html, body {
+        transition:
+          background-color 0.35s ease,
+          color 0.35s ease;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      header,
+      main,
+      footer {
+        transition:
+          background-color 0.35s ease,
+          color 0.35s ease,
+          border-color 0.35s ease;
+      }
+
+      /* =====================
+         PAGE FADE (NAVEGACIÓN)
+      ====================== */
+  
+      /* =====================
+        PAGE TRANSITION (SMOOTH)
+      ===================== */
+      main {
+        animation: pageEnter 0.35s ease both;
+      }
+
+      @keyframes pageEnter {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* =====================
+         HEADER
+      ====================== */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.1rem 2rem;
+
+        background-color: var(--header-bg);
+        color: var(--header-text);
+
+        border-bottom: 2px solid rgba(107,191,89,0.25);
+      }
+
+      .brand a {
+        font-weight: 700;
+        font-size: 1.05rem;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        color: var(--header-text);
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--header-text);
+        font-weight: 500;
+        opacity: 0.85;
+        transition: opacity 0.2s ease, color 0.2s ease;
+      }
+
+      nav a:hover {
+        opacity: 1;
+        color: var(--green);
+      }
+
+      .theme-toggle {
+        background: none;
+        border: none;
+        font-size: 1.1rem;
+        cursor: pointer;
+        color: var(--header-text);
+        transition: transform 0.25s ease;
+      }
+
+      .theme-toggle:hover {
+        transform: scale(1.15);
+      }
+
+      /* =====================
+         FOOTER
+      ====================== */
+      footer {
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.85rem;
+        opacity: 0.6;
+      }
+
+      /* =====================
+         ACCESSIBILITY
+      ====================== */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="brand">
+        <a href="/">Home</a>
+      </div>
+
+      <nav>
+        <a href={lang === "es" ? "/es/portfolio" : "/portfolio"}>Portfolio</a>
+        <a href={lang === "es" ? "/es/papers" : "/papers"}>Papers</a>
+        <a href={lang === "es" ? "/es/contact" : "/contact"}>Contact</a>
+
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          🌙
+        </button>
+
+        <span class="lang" aria-disabled="true">EN</span>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      © 2026 GisGeo · Geospatial Consulting & Research
+    </footer>
+
+    <!-- =====================
+         SCRIPT TEMA OSCURO (LIMPIO)
+    ====================== -->
+    <script is:inline>
+      const toggle = document.getElementById("themeToggle");
+      const root = document.documentElement;
+
+      const saved = localStorage.getItem("theme");
+      if (saved) {
+        root.setAttribute("data-theme", saved);
+        toggle.textContent = saved === "dark" ? "☀️" : "🌙";
+      }
+
+      toggle.addEventListener("click", () => {
+        const current =
+          root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+
+        root.setAttribute("data-theme", current);
+        localStorage.setItem("theme", current);
+        toggle.textContent = current === "dark" ? "☀️" : "🌙";
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Papers — GisGeo">
+  <section class="hero">
+    <h1>Papers & Technical Notes</h1>
+    <p>
+      Scientific notes, methodologies and applied research
+      related to GIS, geophysics and spatial analysis.
+    </p>
+  </section>
+
+  <section class="placeholder">
+    <article class="card">
+      <h2>Section under preparation</h2>
+
+      <p>
+        This section will host technical papers, methodological notes
+        and reproducible research related to ongoing and completed projects.
+      </p>
+
+      <ul>
+        <li>Multifractal and structural analysis methodologies</li>
+        <li>Geospatial and geophysical workflows</li>
+        <li>Python-based scientific tools and case studies</li>
+      </ul>
+
+      <p class="muted">
+        Initial publications will be released progressively.
+      </p>
+
+      <a href="/portfolio" class="link">
+        View related projects →
+      </a>
+    </article>
+  </section>
+
+  <style>
+    .hero {
+      max-width: 900px;
+      margin: auto;
+      padding: 4.5rem 2rem 3rem;
+      text-align: left;
+    }
+
+    .hero h1 {
+      margin-bottom: 0.6rem;
+    }
+
+    .hero p {
+      max-width: 720px;
+      opacity: 0.85;
+    }
+
+    .placeholder {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      color: var(--card-text);
+      border-radius: 18px;
+      padding: 2.4rem;
+      box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.12),
+        0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    :global([data-theme="dark"]) .card {
+      box-shadow:
+        0 22px 65px rgba(0, 0, 0, 0.7),
+        0 8px 22px rgba(0, 0, 0, 0.5);
+    }
+
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+      color: var(--green);
+    }
+
+    .card p {
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .card ul {
+      margin: 1.2rem 0 1.4rem;
+      padding-left: 1.2rem;
+      opacity: 0.85;
+    }
+
+    .card li {
+      margin-bottom: 0.4rem;
+    }
+
+    .muted {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    .link {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--green);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</BaseLayout>

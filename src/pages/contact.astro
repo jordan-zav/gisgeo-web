@@ -1,0 +1,197 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Contact — GisGeo" lang="en">
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <h1>Contact</h1>
+    <p>
+      For collaborations, consulting inquiries or technical discussions
+      related to geospatial analysis and applied research.
+    </p>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="contact">
+    <article class="card">
+      <div class="content">
+        <h2>Get in touch</h2>
+
+        <p class="lead">
+          You can reach me directly through the following channels:
+        </p>
+
+        <ul class="contact-list">
+          <li>
+            <span class="label">Email</span>
+            <a href="mailto:jordanzav@gisgeo.dev">
+              jordanzav@gisgeo.dev
+            </a>
+          </li>
+
+          <li>
+            <span class="label">LinkedIn</span>
+            <a
+              href="https://www.linkedin.com/in/jordan-zav/"
+              target="_blank"
+              rel="noopener"
+            >
+              linkedin.com/in/jordan-zav →
+            </a>
+          </li>
+        </ul>
+
+        <p class="muted">
+          I usually respond within 24–48 hours.
+        </p>
+      </div>
+
+      <!-- QR -->
+      <div class="qr">
+        <img
+          src="/qr-linkedin.png"
+          alt="LinkedIn QR code"
+        />
+        <span>Scan to open LinkedIn</span>
+      </div>
+    </article>
+  </section>
+
+  <style>
+    /* =====================
+       HERO
+    ====================== */
+    .hero {
+      max-width: 900px;
+      margin: auto;
+      padding: 4.5rem 2rem 2.5rem;
+    }
+
+    .hero p {
+      max-width: 720px;
+      opacity: 0.85;
+    }
+
+    /* =====================
+       CONTACT
+    ====================== */
+    .contact {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem 2rem 4rem;
+    }
+
+    /* =====================
+       CARD (LIGHT DEFAULT)
+    ====================== */
+    .card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+
+      background: #ffffff;
+      color: #1f2933;
+      border-radius: 18px;
+      padding: 2.6rem;
+
+      box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.12),
+        0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    /* =====================
+       CARD (DARK THEME)
+    ====================== */
+    :global([data-theme="dark"]) .card {
+      background: #0f172a;
+      color: #e5e7eb;
+
+      box-shadow:
+        0 22px 65px rgba(0, 0, 0, 0.7),
+        0 8px 22px rgba(0, 0, 0, 0.5);
+    }
+
+    /* =====================
+       TEXT
+    ====================== */
+    h2 {
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+      color: var(--green);
+    }
+
+    .lead {
+      margin-bottom: 1.6rem;
+      opacity: 0.9;
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.6rem;
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.6;
+    }
+
+    .contact-list a {
+      color: var(--green);
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .contact-list a:hover {
+      text-decoration: underline;
+    }
+
+    .muted {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* =====================
+       QR
+    ====================== */
+    .qr {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      opacity: 0.85;
+    }
+
+    .qr img {
+      width: 120px;
+      height: 120px;
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 0.4rem;
+    }
+
+    .qr span {
+      font-size: 0.75rem;
+      opacity: 0.65;
+    }
+
+    /* =====================
+       RESPONSIVE
+    ====================== */
+    @media (max-width: 720px) {
+      .card {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .qr {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</BaseLayout>

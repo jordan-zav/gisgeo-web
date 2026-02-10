@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+// 1. Generar rutas estáticas
+export async function getStaticPaths() {
+  const projects = await getCollection("portfolio");
+
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+// 2. Proyecto actual
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<BaseLayout title={`${project.data.title} — GisGeo`}>
+  <section class="project">
+    <h1>{project.data.title}</h1>
+    <p class="summary">{project.data.summary}</p>
+
+    <article class="content">
+      <Content />
+    </article>
+
+    <a href="/portfolio" class="back">
+      ← Back to portfolio
+    </a>
+  </section>
+
+  <style>
+    .project {
+      max-width: 900px;
+      margin: auto;
+      padding: 4rem 2rem;
+    }
+
+    h1 {
+      margin-bottom: 0.6rem;
+    }
+
+    .summary {
+      opacity: 0.85;
+      margin-bottom: 2.5rem;
+    }
+
+    .content :global(p) {
+      line-height: 1.7;
+      margin-bottom: 1.4rem;
+    }
+
+    .content :global(ul) {
+      padding-left: 1.5rem;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 3rem;
+      color: var(--green);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .back:hover {
+      text-decoration: underline;
+    }
+  </style>
+</BaseLayout>
